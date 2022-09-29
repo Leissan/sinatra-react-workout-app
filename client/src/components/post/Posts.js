@@ -3,12 +3,13 @@ import Layout  from '../layout/Layout';
 import Post from "./Post"
 
 
-const Posts = () => {
+const Posts = ({workoutt}) => {
     const [posts, setPosts] = useState([]);
     
 
     useEffect(() => {
-         fetch ('http://localhost:3000/posts')
+         //fetch ('http://localhost:3000/posts')
+         fetch("http://localhost:9292/exercises")
          .then (res => res.json())
          .then (data => setPosts(data))
        },[])
@@ -37,7 +38,7 @@ const Posts = () => {
                         <Post 
                          key={post.id}
                          id={post.id} 
-                         workout={post.workout} 
+                         exercise={post.exercise_name} 
                          description={post.description}  
                          repetitions={post.repetitions}
                          onPostDelete={handleDeletePost}

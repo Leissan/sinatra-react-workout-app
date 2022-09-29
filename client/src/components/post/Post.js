@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import EditPost from "./EditPost";
 
-export const Post = ({id, workout, description, repetitions, onPostDelete, onUpdateMessage}) => {
+export const Post = ({id, exercise, description, repetitions, onPostDelete, onUpdateMessage}) => {
     
     const [isEditing, setIsEditing] = useState(false);
 
     function handleDeletePost() {
-        fetch(`http://localhost:3000/posts/${id}`, {
+        fetch(`http://localhost:9292/exercises/${id}`, {
           method: "DELETE",
         });
     
@@ -21,7 +21,7 @@ export const Post = ({id, workout, description, repetitions, onPostDelete, onUpd
     return (
         <div style={{margin: 20}}>
   
-            <h3> {workout} </h3>
+            <h3> {exercise} </h3>
             <p> {description} </p>
             {isEditing? (
                 <EditPost

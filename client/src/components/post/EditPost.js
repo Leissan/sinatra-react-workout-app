@@ -6,7 +6,7 @@ function EditPost({ id, repetitions, onUpdateMessage }) {
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/posts/${id}`, {
+    fetch(`http://localhost:9292/exercises/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

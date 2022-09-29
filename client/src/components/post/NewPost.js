@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../layout/Layout';
 
 const NewPost = () => {
-  const [workout, setWorkout] = useState("")
+  const [exercise, setExercise] = useState("")
   const [description, setDescription] = useState("")
   const [repetitions, setRepetitions] = useState("")
  
@@ -11,13 +11,13 @@ const NewPost = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-  fetch("http://localhost:3000/posts", {
+  fetch("http://localhost:9292/exercises", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
     },
     body: JSON.stringify({
-        "workout": workout, 
+        "exercise": exercise, 
         "description": description,
         "repetitions": repetitions
     }),
@@ -26,7 +26,7 @@ const NewPost = () => {
     .then((r) => r.json())
     .then(()=>{
     
-    setWorkout("");
+    setExercise("");
     setRepetitions("");
     setDescription("");
     });
@@ -38,11 +38,11 @@ const NewPost = () => {
             <main style={{ padding: "1rem 0" }}>
                 <h2>New Workout</h2>
                 <div>
-                    <span>Type of workout </span>
+                    <span>Type of exercise </span>
                         <input
-                            placeholder="type of workout"
-                            value={workout}
-                            onChange={(event) => setWorkout(event.target.value)}
+                            placeholder="type of exercise"
+                            value={exercise}
+                            onChange={(event) => setExercise(event.target.value)}
                         />
                     </div>
                     <div>

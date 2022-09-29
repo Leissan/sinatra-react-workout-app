@@ -7,6 +7,11 @@ class ApplicationController < Sinatra::Base
     exercises.to_json
   end
 
+  get '/workouts' do
+    workouts = Workout.all
+    workouts.to_json(include: :exercises)
+  end
+
   post "/exercises" do
     exercise = Exercise.create(
       name: params[:name],
