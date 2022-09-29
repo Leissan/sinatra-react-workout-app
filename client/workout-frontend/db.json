@@ -1,0 +1,58 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "workout": "Warm-up",
+      "description": "Shoulder-arm circles",
+      "repetitions": "3 sets of 22"
+    },
+    {
+      "id": 2,
+      "workout": "Cardio",
+      "description": "Jumping jacks",
+      "repetitions": "3 sets of 20"
+    },
+    {
+      "id": 3,
+      "workout": "Upper body",
+      "description": "Push-ups",
+      "repetitions": "3 sets of 10"
+    },
+    {
+      "workout": "Core",
+      "description": "Leg raises",
+      "repetitions": "3 sets of 10",
+      "id": 6
+    },
+    {
+      "workout": "Core ",
+      "description": "Glute bridge",
+      "repetitions": "3 sets of 10",
+      "id": 7
+    },
+    {
+      "workout": "Glutes",
+      "description": "Squats",
+      "repetitions": "3 sets of 15",
+      "id": 8
+    },
+    {
+      "workout": "Legs",
+      "description": "Walking lunges",
+      "repetitions": "3 sets of 20",
+      "id": 9
+    },
+    {
+      "workout": "Upper body",
+      "description": "bicep curles",
+      "repetitions": "3 sets of 20",
+      "id": 10
+    },
+    {
+      "workout": "post workout",
+      "description": "stretches",
+      "repetitions": "20 min",
+      "id": 11
+    }
+  ]
+}

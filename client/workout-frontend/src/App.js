@@ -1,24 +1,16 @@
-import logo from './logo.svg';
+
+import React from 'react';
+import Navigation from './components/navigation/NavigationBar';
 import './App.css';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <h1>Welcome to the workout world!</h1>
+      <h2>¨Our bodies are our gardens – our wills are our gardeners.¨ – William Shakespeare</h2>
+      <img width="800" src="https://img.freepik.com/premium-vector/cute-cat-workout-cartoon_435121-11.jpg?w=996" />
+    </Layout>
   );
 }
 
