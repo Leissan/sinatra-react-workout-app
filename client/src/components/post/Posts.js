@@ -3,7 +3,7 @@ import Layout  from '../layout/Layout';
 import Post from "./Post"
 
 
-const Posts = ({workoutt}) => {
+const Posts = () => {
     const [posts, setPosts] = useState([]);
     
 
@@ -38,7 +38,7 @@ const Posts = ({workoutt}) => {
                         <Post 
                          key={post.id}
                          id={post.id} 
-                         exercise={post.exercise_name} 
+                         exercisename={post.exercisename} 
                          description={post.description}  
                          repetitions={post.repetitions}
                          onPostDelete={handleDeletePost}

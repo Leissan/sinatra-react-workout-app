@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditPost from "./EditPost";
 
-export const Post = ({id, exercise, description, repetitions, onPostDelete, onUpdateMessage}) => {
+export const Post = ({id, exercisename, description, repetitions, onPostDelete, onUpdateMessage}) => {
     
     const [isEditing, setIsEditing] = useState(false);
 
@@ -21,7 +21,7 @@ export const Post = ({id, exercise, description, repetitions, onPostDelete, onUp
     return (
         <div style={{margin: 20}}>
   
-            <h3> {exercise} </h3>
+            <h3> {exercisename} </h3>
             <p> {description} </p>
             {isEditing? (
                 <EditPost

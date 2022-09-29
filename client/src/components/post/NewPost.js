@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../layout/Layout';
 
 const NewPost = () => {
-  const [exercise, setExercise] = useState("")
+  const [exercisename, setExercisename] = useState("")
   const [description, setDescription] = useState("")
   const [repetitions, setRepetitions] = useState("")
  
@@ -17,7 +17,7 @@ const NewPost = () => {
         "Content-Type": "application/json",
     },
     body: JSON.stringify({
-        "exercise": exercise, 
+        "exercisename": exercisename, 
         "description": description,
         "repetitions": repetitions
     }),
@@ -26,7 +26,7 @@ const NewPost = () => {
     .then((r) => r.json())
     .then(()=>{
     
-    setExercise("");
+    setExercisename("");
     setRepetitions("");
     setDescription("");
     });
@@ -41,8 +41,8 @@ const NewPost = () => {
                     <span>Type of exercise </span>
                         <input
                             placeholder="type of exercise"
-                            value={exercise}
-                            onChange={(event) => setExercise(event.target.value)}
+                            value={exercisename}
+                            onChange={(event) => setExercisename(event.target.value)}
                         />
                     </div>
                     <div>

@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   post "/exercises" do
     exercise = Exercise.create(
-      name: params[:name],
+      exercisename: params[:exercisename],
       description: params[:description],
       repetitions: params[:repetitions],
       workout_id: params[:workout_id]
@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
   patch "/exercises/:id" do
     exercise = Exercise.find(params[:id])
     exercise.update(
-      name: params[:name],
+      exercisename: params[:exercisename],
       description: params[:description],
       repetitions: params[:repetitions]
     )
