@@ -33,10 +33,12 @@ const NewPost = () => {
   
 }
 
+//console.log(exercisename, description, repetitions)
+
   return (
     <Layout>
             <main style={{ padding: "1rem 0" }}>
-                <h2>New Workout</h2>
+                <h2>New Exercise 💪 </h2>
                 <div>
                     <span>Type of exercise </span>
                         <input

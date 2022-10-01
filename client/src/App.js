@@ -8,26 +8,35 @@ import Posts from './components/post/Posts';
 import NewPost from './components/post/NewPost';
 import Post from './components/post/Post';
 import Homebase from './components/homebase';
+import Workouts from './components/post/workouts';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
 
-  const [workoutt, setWorkoutt] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:9292/workouts")
-      .then((r) => r.json())
-      .then((games) => setWorkoutt(games));
-  }, []);
+  // const [workouts, setWorkouts] = useState ([]);
+
+  // useEffect(() => {
+  //     fetch('http://localhost:9292/workouts')
+  //     .then (res => res.json())
+  //     .then (data => setWorkouts(data))
+  // }, [])
+
   
-  console.log(workoutt)
+  //console.log(workoutt)
 
   return (
-    <Routes>
-     <Route exact path="/" element={<Homebase />} />
-     <Route path="/workout_plan" element={<Posts workoutt = {workoutt}/>} />  
-     <Route path="/new_workout" element={<NewPost />} />
-   
-  </Routes>
-  )}
+   <div>
+    
+      <Routes>
+          <Route exact path="/" element={<Homebase />} />
+          <Route path="/exercise_plan" element={<Posts/>} />  
+          <Route path="/new_exercise" element={<NewPost />} />
+          <Route path="/all_workouts" element={<Workouts />} />
+    
+      </Routes>
+   </div>
+    )
+  
+  }
 
 export default App;

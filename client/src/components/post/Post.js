@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditPost from "./EditPost";
 
-export const Post = ({id, exercisename, description, repetitions, onPostDelete, onUpdateMessage}) => {
+export const Post = ({id, workoutname, exercisename, exercises, description, repetitions, onPostDelete, onUpdateMessage}) => {
     
     const [isEditing, setIsEditing] = useState(false);
 
@@ -19,25 +19,29 @@ export const Post = ({id, exercisename, description, repetitions, onPostDelete, 
       
 
     return (
-        <div style={{margin: 20}}>
-  
-            <h3> {exercisename} </h3>
-            <p> {description} </p>
-            {isEditing? (
-                <EditPost
-                    id = {id}
-                    repetitions={repetitions}
-                    onUpdateMessage = {handleUpdateMessage}
-                />
-            ) : ( 
-                 <p>{repetitions}</p>    
+        
+        
+            <div style={{margin: 20}}>
+    
+                
+                <h3> ⭐️ {exercisename} </h3>
+                <p> {description} </p>
+                {isEditing? (
+                    <EditPost
+                        id = {id}
+                        repetitions={repetitions}
+                        onUpdateMessage = {handleUpdateMessage}
+                    />
+                ) : ( 
+                    <p>{repetitions}</p>    
 
-            )} 
-            
-            <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit workout!</button>
-            <button onClick={handleDeletePost}>killed it!</button> 
-            <br/>
-        </div>
+                )} 
+                
+                <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit workout!</button>
+                <button onClick={handleDeletePost}>killed it!</button> 
+                <br/>
+            </div>
+       
     )
 }
 
