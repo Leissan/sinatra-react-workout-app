@@ -12,6 +12,16 @@ const Workouts = () => {
     }, [])
 
 //console.log(workouts)
+function toggleComplete (id) {
+   const updatedWorkouts = workouts.map((workout) => {
+    if (workout.id ==id) {
+        workout.completed = ! workout.completed
+    }
+    return workout
+   })
+   setWorkouts(updatedWorkouts)
+}
+
 
 return (
     <Layout>
@@ -28,11 +38,17 @@ return (
                     <p> ⭐️ Exercise name: {exercise.exercisename}</p>
                     <p>Description: {exercise.description}</p>
                     <p>Repetitions: {exercise.repetitions}</p>
+                    
                 </div>
             ))}</p>
+            <input type = "checkbox" 
+            onChange = {()=> toggleComplete (workout.id)}
+            checked = {workout.completed}
+            />
+            
             </div>     
             ))}
-        
+            
         </main>
     </Layout>
 )}

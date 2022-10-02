@@ -21,6 +21,7 @@ const Posts = () => {
     //     console.log(exercise)
     //   })
     // })
+
     
 
     function handleDeletePost(id) {
@@ -43,14 +44,16 @@ const Posts = () => {
         <Layout>
             <main style={{ padding: "1rem 0"}}>
                 <h2>Exercise Plan 💪 </h2>
-                { posts.length > 0 && posts.map((post) => (
+                
+
+                {posts.map((post) => (
                   <div>
                   
                         <Post 
                          key={post.id}
                          id={post.id} 
                          //exercises={post.exercises}
-
+    
                          exercisename={post.exercisename} 
                          description={post.description}  
                          repetitions={post.repetitions}
