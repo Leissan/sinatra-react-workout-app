@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/exercises" do
     exercises = Exercise.all
-    exercises.to_json
+    exercises.to_json(include: :workout)
   end
 
   get '/workouts' do
@@ -12,15 +12,29 @@ class ApplicationController < Sinatra::Base
     workouts.to_json(include: :exercises)
   end
 
-  post "/exercises" do
-    exercise = Exercise.create(
+
+  post "/workouts/:workout_id/exercises" do
+    workout=Workout.find_by(params[:workout_id])
+    
+    exercise = workout.exercises.create(
       exercisename: params[:exercisename],
       description: params[:description],
       repetitions: params[:repetitions],
-      workout_id: params[:workout_id]
+      
+      #workoutname: workout.workoutname
+      #difficulty: workout.difficulty
       )
-      exercise.to_json
+      exercise.to_json(include: :workout)
   end
+
+  post "/workouts" do
+    workouts = Workout.create(
+      workoutname: params[:workoutname],
+      difficulty: params[:difficulty]
+    )
+    workouts.to_json
+  end
+  
 
   patch "/exercises/:id" do
     exercise = Exercise.find(params[:id])
