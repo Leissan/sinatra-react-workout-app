@@ -16,7 +16,9 @@ function EditPost({ id, repetitions, onUpdateMessage }) {
       }),
     })
       .then((r) => r.json())
-      .then((updatedMessage) => onUpdateMessage(updatedMessage));
+      
+      .then((updatedMessage) => { console.log(updatedMessage); onUpdateMessage(updatedMessage)})
+      
   }
 
   return (

@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  post "/workouts/:workout_id/exercises" do
+  post "/exercises" do
     workout=Workout.find_by(params[:workout_id])
     
     exercise = workout.exercises.create(
@@ -24,15 +24,16 @@ class ApplicationController < Sinatra::Base
       #workoutname: workout.workoutname
       #difficulty: workout.difficulty
       )
-      exercise.to_json(include: :workout)
+      exercise.to_json
   end
 
   post "/workouts" do
     workouts = Workout.create(
       workoutname: params[:workoutname],
-      difficulty: params[:difficulty]
+      difficulty: params[:difficulty],
+      # exercisename: params[:exercisename],
     )
-    workouts.to_json
+    workouts.to_jsons
   end
   
 
@@ -50,6 +51,12 @@ class ApplicationController < Sinatra::Base
     exercise = Exercise.find(params[:id])
     exercise.destroy
     exercise.to_json
+  end
+
+  delete "/workouts/:id" do
+    workout = Workout.find(params[:id])
+    workout.destroy
+    workout.to_json
   end
 
 end

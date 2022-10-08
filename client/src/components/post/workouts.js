@@ -8,9 +8,7 @@ const Workouts = () => {
     const [workouts, setWorkouts] = useState ([]);
     const [workoutname, setWorkoutname] = useState("");
     const [difficulty, setDifficulty] = useState("");
-    const [exercisename, setExercisename] = useState("");
-
-   
+ 
     function handleSubmit(e) {
         e.preventDefault();
     
@@ -21,20 +19,20 @@ const Workouts = () => {
         },
         body: JSON.stringify({
             "workoutname": workoutname, 
-            "difficulty": difficulty
+            "difficulty": difficulty,      
         }),
     
       })
         .then((r) => r.json())
         .then(()=>{
-        
+        //console.log(newWorkout)
         setWorkoutname("");
         setDifficulty("");
-        setExercisename("")
-        });
-      
+        
+        // setWorkoutss([...workoutss, newWorkout])
+        });  
     }
-
+    
     useEffect(() => {
         fetch('http://localhost:9292/workouts')
         .then (res => res.json())
@@ -42,16 +40,28 @@ const Workouts = () => {
     }, [workouts])
 
 //console.log(workouts)
-function toggleComplete (id) {
-   const updatedWorkouts = workouts.map((workout) => {
-    if (workout.id ==id) {
-        workout.completed =! workout.completed
-    }
-    return workout 
-   })
-   setWorkouts(updatedWorkouts)
-}
+// function toggleComplete (id) {
+//    const updatedWorkouts = workouts.map((workout) => {
+//     if (workout.id ==id) {
+//         workout.completed =! workout.completed
+//     }
+//     return workout 
+//    })
+//    setWorkouts(updatedWorkouts)
+// }
+function handleDeleteWorkout(id) {
+    fetch(`http://localhost:9292/workouts/${id}`, {
+      method: "DELETE",
+    });
 
+    onDelete(id);
+ }
+
+function onDelete(id) {
+    const updatedWorkouts = workouts.filter((workout) => workout.id !== id);
+    console.log(JSON.stringify(updatedWorkouts))
+    setWorkouts(updatedWorkouts)
+}
 
 return (
     <Layout>
@@ -64,13 +74,15 @@ return (
             <p>{workout.difficulty}</p> 
             <Link to = {`/all_workouts/${workout.id}`}>Click here for exercises!
             </Link>
+            <br/>
+            <button onClick={()=>handleDeleteWorkout(workout.id)}>Delete Workout!</button>
           
         
-            <input type = "checkbox" 
+            {/* <input type = "checkbox" 
             onChange = {()=> toggleComplete (workout.id)}
             checked = {workout.completed}
             />
-            
+             */}
             </div>     
             ))}
             <div>
@@ -91,14 +103,14 @@ return (
                             onChange={(event) => setDifficulty(event.target.value)}
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <span>Exercise name </span>
                             <input 
                             placeholder="name of exercise " 
                             value={exercisename}
                             onChange={(event) => setExercisename(event.target.value)}
                         />
-                    </div>
+                    </div> */}
 
                 <button onClick={handleSubmit}>Add Workout!</button>
             </div>

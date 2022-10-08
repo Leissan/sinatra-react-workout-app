@@ -26,15 +26,15 @@ function App() {
 
   return (
    <div>
-    {workouts.map((workout) => {
+    {/* {workouts.map((workout) => {
       workout.exercises.map((exercise) => {
       
       })
-    })}
+    })} */}
       <Routes>
           <Route exact path="/" element={<Homebase />} />
           <Route path="/exercise_plan" element={<Posts/>} />  
-          <Route path="/all_workouts" element={<Workouts/>} />
+          <Route path="/all_workouts" element={<Workouts />} />
           <Route path='/all_workouts/:workoutId' element={<Workout workouts={workouts}/>} /> 
           <Route path="/new_exercise" element={<NewPost />} />
           

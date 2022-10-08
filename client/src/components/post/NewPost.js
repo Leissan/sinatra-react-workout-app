@@ -11,7 +11,7 @@ const NewPost = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-  fetch("http://localhost:9292/exercises", {
+  fetch("http://localhost:9292/workouts", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
