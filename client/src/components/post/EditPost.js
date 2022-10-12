@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-function EditPost({ id, repetitions, onUpdateMessage }) {
+function EditPost({ id, repetitions, onUpdateMessage, exercisename, description }) {
   const [messageBody, setMessageBody] = useState(repetitions);
+  
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -12,7 +13,11 @@ function EditPost({ id, repetitions, onUpdateMessage }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        repetitions: messageBody,
+        "exercisename": exercisename, 
+        "description": description,
+        repetitions: messageBody
+
+
       }),
     })
       .then((r) => r.json())
@@ -23,6 +28,7 @@ function EditPost({ id, repetitions, onUpdateMessage }) {
 
   return (
     <form className="edit-message" onSubmit={handleFormSubmit}>
+      toggle is true? edit : not edit
       <input
         type="text"
         name="repetitions"

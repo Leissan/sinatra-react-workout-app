@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import Layout  from '../layout/Layout';
+import EditPost from "./EditPost";
 
 
-const Workout = ({workouts}) => {
-
+const Workout = ({workouts, setWorkouts}) => {
+    
     const [workout, setWorkout] = useState({ 
         workoutname: "",
         difficulty: "",
         exercises: [],
     },[]);
-    const [exercise, setExercise] = useState({})
+    const [isEditing, setIsEditing] = useState(false);
     const [exercisename, setExercisename] = useState("")
     const [description, setDescription] = useState("")
     const [repetitions, setRepetitions] = useState("")
@@ -24,8 +25,7 @@ const Workout = ({workouts}) => {
     useEffect(() => {
         const match = workouts.find(workout => workout.id == workoutId)
         setWorkout(match)
-        
-    }, [workout])
+    },[workouts, workoutId])
     
     function handleDeleteExercise(id) {
         fetch(`http://localhost:9292/exercises/${id}`, {
@@ -54,35 +54,61 @@ const Workout = ({workouts}) => {
         body: JSON.stringify({
             "exercisename": exercisename, 
             "description": description,
-            "repetitions": repetitions
+            "repetitions": repetitions,
+            "workout_id": workoutId
         }),
 
     })
         .then((r) => r.json())
-        .then(()=>{
+        .then((res)=>{
+        const exercises = workout.exercises
         
+        // add response to workout.exercises
         setExercisename("");
         setRepetitions("");
         setDescription("");
+        setWorkout({...workout, exercises: [...exercises, res]})
+
         });
     
 }
-    // useEffect(() => {
-    //     fetch('http://localhost:9292/exercises')
-    //     .then (res => res.json())
-    //     .then (data => setExercise(data))
-    // }, [])
+    function onUpdateMessage(updatedMessageObj) {
+        const updatedExercises = workout.exercises.map((exercise) => {
+          if (exercise.id === updatedMessageObj.id) {
+            return updatedMessageObj;
+          } else {
+            return exercise;
+          }
+        });
+        setWorkout({...workout, exercises: updatedExercises})
+      }
 
-    // console.log("workout is")
-    // console.log(JSON.stringify(workout))
-   
+    function handleUpdateMessage(updatedMessage) {
+        setIsEditing(false);
+        onUpdateMessage(updatedMessage);
+    }
+
     if (workout !== undefined ) {
+    
         const exercises =  workout.exercises.map((exercise)=> (
+            //create new comp and move the map and isEditing as a state variablez
         
         <div>
             <p> 💪 <b>Exercise: </b> {exercise.exercisename}</p>
             <p> <b>Description: </b> {exercise.description}</p>
-            <p> <b>Repetitions: </b> {exercise.repetitions}</p>
+            {isEditing? (
+                    <EditPost
+                        id = {exercise.id}
+                        exercisename={exercise.exercisename}
+                        description = {exercise.description}
+                        repetitions={exercise.repetitions}
+                        onUpdateMessage = {handleUpdateMessage}
+                    />
+            ) : ( 
+                <p> <b> Repetitions: </b> {exercise.repetitions}</p>    
+
+            )} 
+            <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit exercise!</button>   
             <button onClick={()=>handleDeleteExercise(exercise.id)}>killed it!</button> 
             <br/>
             <br/>

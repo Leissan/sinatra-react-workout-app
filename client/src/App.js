@@ -5,7 +5,7 @@ import './App.css';
 import Layout from './components/layout/Layout';
 import {useState, useEffect} from 'react'
 import Posts from './components/post/Posts';  
-import NewPost from './components/post/NewPost';
+
 import Post from './components/post/Post';
 import Homebase from './components/homebase';
 import Workouts from './components/post/workouts';
@@ -35,8 +35,8 @@ function App() {
           <Route exact path="/" element={<Homebase />} />
           <Route path="/exercise_plan" element={<Posts/>} />  
           <Route path="/all_workouts" element={<Workouts />} />
-          <Route path='/all_workouts/:workoutId' element={<Workout workouts={workouts}/>} /> 
-          <Route path="/new_exercise" element={<NewPost />} />
+          <Route path='/all_workouts/:workoutId' element={<Workout workouts={workouts} setWorkouts={setWorkouts}/>} /> 
+          
           
     
       </Routes>

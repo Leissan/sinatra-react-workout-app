@@ -14,8 +14,8 @@ class ApplicationController < Sinatra::Base
 
 
   post "/exercises" do
-    workout=Workout.find_by(params[:workout_id])
-    
+    workout=Workout.find(params[:workout_id])
+
     exercise = workout.exercises.create(
       exercisename: params[:exercisename],
       description: params[:description],

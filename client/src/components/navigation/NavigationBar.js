@@ -28,7 +28,6 @@ const NavigationBar = () => {
             >
                 <Link to="/" >Home</Link>  |{" "}
                 <Link to="/exercise_plan">All Exercises</Link> |{" "}
-                <Link to="/new_exercise">New Exercise</Link>  |{" "}
                 <Link to="/all_workouts">All Workouts</Link>
                 
 
