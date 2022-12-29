@@ -36,7 +36,7 @@ export const Post = ({id, exercisename, workouts, exercises, description, repeti
 
                 )} 
                 
-                <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit workout!</button>
+                {/* <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit workout!</button> */}
                 <button onClick={handleDeletePost}>killed it!</button> 
                 <br/>
             </div>

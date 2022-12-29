@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useParams } from 'react-router-dom';
 import Layout  from '../layout/Layout';
 import EditPost from "./EditPost";
+import Exercise from './Exercise'
 
 
 const Workout = ({workouts, setWorkouts}) => {
@@ -84,7 +85,6 @@ const Workout = ({workouts, setWorkouts}) => {
       }
 
     function handleUpdateMessage(updatedMessage) {
-        setIsEditing(false);
         onUpdateMessage(updatedMessage);
     }
 
@@ -92,27 +92,11 @@ const Workout = ({workouts, setWorkouts}) => {
     
         const exercises =  workout.exercises.map((exercise)=> (
             //create new comp and move the map and isEditing as a state variablez
-        
-        <div>
-            <p> 💪 <b>Exercise: </b> {exercise.exercisename}</p>
-            <p> <b>Description: </b> {exercise.description}</p>
-            {isEditing? (
-                    <EditPost
-                        id = {exercise.id}
-                        exercisename={exercise.exercisename}
-                        description = {exercise.description}
-                        repetitions={exercise.repetitions}
-                        onUpdateMessage = {handleUpdateMessage}
-                    />
-            ) : ( 
-                <p> <b> Repetitions: </b> {exercise.repetitions}</p>    
-
-            )} 
-            <button onClick ={() => setIsEditing ((isEditing) => !isEditing)}>edit exercise!</button>   
-            <button onClick={()=>handleDeleteExercise(exercise.id)}>killed it!</button> 
-            <br/>
-            <br/>
-        </div>
+        //instead of div make that a new componenet Exercise
+        <Exercise handleUpdateMessage={handleUpdateMessage}
+        handleDeleteExercise={handleDeleteExercise}
+        exercise = {exercise}
+        />
     ))
     return (
         <Layout>

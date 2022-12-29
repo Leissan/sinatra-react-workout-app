@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function EditPost({ id, repetitions, onUpdateMessage, exercisename, description }) {
+function EditPost({ id, repetitions, onUpdateMessage, exercisename, description, setIsEditing }) {
   const [messageBody, setMessageBody] = useState(repetitions);
   
 
@@ -24,11 +24,13 @@ function EditPost({ id, repetitions, onUpdateMessage, exercisename, description 
       
       .then((updatedMessage) => { console.log(updatedMessage); onUpdateMessage(updatedMessage)})
       
+    setIsEditing(false)
   }
+
+
 
   return (
     <form className="edit-message" onSubmit={handleFormSubmit}>
-      toggle is true? edit : not edit
       <input
         type="text"
         name="repetitions"
